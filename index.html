@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TauriEXIF</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <h1>TauriEXIF</h1>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" id="btn-files" class="btn">Add files</button>
+          <button type="button" id="btn-folder" class="btn btn-ghost">Add folder</button>
+          <button type="button" id="btn-settings" class="btn btn-icon" aria-label="Settings" title="Settings">
+            ⚙
+          </button>
+        </div>
+      </header>
+
+      <section id="dropzone" class="dropzone" tabindex="0">
+        <div class="dropzone-inner">
+          <p class="dropzone-title">Drop images, media, or PDFs</p>
+          <p class="dropzone-sub">Metadata is stripped locally with ExifTool. Nothing is uploaded.</p>
+        </div>
+      </section>
+
+      <section id="results" class="results hidden">
+        <div class="status-bar">
+          <span id="status-summary">No files yet</span>
+          <button type="button" id="btn-clear" class="btn btn-ghost btn-small">Clear</button>
+        </div>
+        <div class="table-wrap">
+          <table class="file-table">
+            <thead>
+              <tr>
+                <th class="col-name">File</th>
+                <th class="col-size">Size</th>
+                <th class="col-meta">Metadata</th>
+                <th class="col-status">Status</th>
+              </tr>
+            </thead>
+            <tbody id="file-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside id="settings-drawer" class="drawer" aria-hidden="true">
+        <div class="drawer-panel">
+          <div class="drawer-header">
+            <h2>Settings</h2>
+            <button type="button" id="btn-close-settings" class="btn btn-ghost btn-small">Close</button>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="opt-save-copy" />
+            <span>Save as copy</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="opt-orientation" />
+            <span>Preserve orientation</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="opt-color" />
+            <span>Preserve color profile</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="opt-resolution" />
+            <span>Preserve resolution</span>
+          </label>
+          <fieldset class="theme-field">
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system" /> System</label>
+            <label><input type="radio" name="theme" value="light" /> Light</label>
+            <label><input type="radio" name="theme" value="dark" /> Dark</label>
+          </fieldset>
+          <p class="drawer-note">
+            Rust + Tauri port of
+            <a href="https://github.com/szTheory/exifcleaner" target="_blank" rel="noreferrer">ExifCleaner</a>
+            (MVP). Still uses ExifTool under the hood.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </body>
+</html>

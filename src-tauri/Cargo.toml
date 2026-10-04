@@ -1,0 +1,36 @@
+[package]
+name = "tauri-exif"
+version = "0.1.0"
+description = "Tauri port of ExifCleaner — strip metadata from images, media, and PDFs"
+authors = ["GeneralKnowledge"]
+edition = "2021"
+
+[lib]
+name = "tauri_exif_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["process", "io-util", "sync", "time", "macros", "rt-multi-thread"] }
+dirs = "6"
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"
+hex = "0.4"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
